@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A small utility to check library versions against a remote copy",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmde/lib-version-check.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
