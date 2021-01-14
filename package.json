@@ -1,0 +1,24 @@
+{
+  "name": "@wmde/lib-version-check",
+  "version": "0.0.1",
+  "description": "A small utility to check library versions against a remote copy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "lib-version-check": "./index.js"
+  },
+  "keywords": [
+    "tool",
+    "npm",
+    "version",
+    "control"
+  ],
+  "author": "Wikimedia Deutschland",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "require-from-url": "^3.1.3",
+    "semver": "^7.3.4"
+  }
+}
