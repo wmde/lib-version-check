@@ -25,7 +25,7 @@ function run(packageJson){
         .map(lib => {
             const libUrl = parseEnvVars(packageJson.config.remoteVersion[lib])
             const remoteVersion = getLibVersion(libUrl);
-            const localRange = packageJson.dependencies[lib] || packageJson.devDependencies[lib];
+            const localRange = (packageJson.dependencies && packageJson.dependencies[lib]) || (packageJson.devDependencies && packageJson.devDependencies[lib]);
     
             assert(remoteVersion, `${lib} does not have a version key to check against.`);
             assert(localRange, `${lib} is not defined as a dependency of this package.`);
