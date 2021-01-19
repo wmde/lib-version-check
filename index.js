@@ -11,6 +11,14 @@ const requireFromUrl = require( 'require-from-url/sync' );
 // Internal
 const packageJson = require( process.cwd() + '/package.json' );
 
+
+function parseEnvVars(rawURL){
+    // Uppercase, Lowercase, Digits and underscore between `#{}`
+    const pattern = /#{([0-9A-Za-z_]+)}/g
+
+    return rawURL.replace(pattern, (match, varName) => process.env[varName] || match);
+}
+
 /**
  * Requires library from external source ant attempts to return a version number
  * string
@@ -48,7 +56,7 @@ function run(packageJson){
 
     return Object.keys( packageJson.config.remoteVersion )
         .map(lib => {
-            const libUrl = packageJson.config.remoteVersion[lib]
+            const libUrl = parseEnvVars(packageJson.config.remoteVersion[lib])
             const remoteVersion = getLibVersion(libUrl);
             const localRange = (packageJson.dependencies && packageJson.dependencies[lib]) || (packageJson.devDependencies && packageJson.devDependencies[lib]);
     

@@ -40,5 +40,25 @@ A small utility to check remote library versions against a local dependency entr
         }
     }
     ```
+## Environment Variables
+
+* Interpolate environment variables to a specified remote url
+
+    ```js
+    {
+        // ...
+        "config": {
+            "remoteVersion": {
+                // <package-name>: <remote>
+                "vue": "https://raw.githubusercontent.com/wikimedia/mediawiki/#{SOME_BRANCH}/resources/lib/vue/vue.common.prod.js",
+            }
+        }
+    }
+    ```
+
+* Define the environment variable and run the check
 
 
+    ```bash
+    SOME_BRANCH=main lib-version-check
+    ```
