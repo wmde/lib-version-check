@@ -1,6 +1,6 @@
 {
   "name": "@wmde/lib-version-check",
-  "version": "0.0.2-0",
+  "version": "0.1.0",
   "description": "A small utility to check library versions against a remote copy",
   "main": "index.js",
   "repository": {
