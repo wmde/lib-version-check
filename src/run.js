@@ -6,6 +6,7 @@ const semver = require( 'semver' );
 
 // Internal
 const { getLibVersion, parseEnvVars } = require('./helpers');
+const messages = require('./messages');
 
 /**
  * Asserts that any configured library has a version key, is listed as a dependency
@@ -18,7 +19,7 @@ function run(packageJson){
     if ( !('config' in packageJson)
         || !('remoteVersion' in packageJson.config)
     ) { 
-        return ['No remote libraries defined in package.json. Exiting...'];
+        throw new Error(messages.no_remotes);
     }
 
     return Object.keys( packageJson.config.remoteVersion )
@@ -27,11 +28,11 @@ function run(packageJson){
             const remoteVersion = getLibVersion(libUrl);
             const localRange = (packageJson.dependencies && packageJson.dependencies[lib]) || (packageJson.devDependencies && packageJson.devDependencies[lib]);
     
-            assert(remoteVersion, `${lib} does not have a version key to check against.`);
-            assert(localRange, `${lib} is not defined as a dependency of this package.`);
-            assert(semver.satisfies( remoteVersion, localRange ), `${remoteVersion} does not match ${localRange}.` );
+            assert(remoteVersion, messages.no_version(lib));
+            assert(localRange, messages.not_dependency(lib));
+            assert(semver.satisfies( remoteVersion, localRange ), messages.no_match(lib, remoteVersion, localRange) );
     
-           return `Local version of ${lib} is in the same version range as ${libUrl}`;
+            return messages.success(lib, libUrl);
         })
 }
 

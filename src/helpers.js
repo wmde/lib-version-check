@@ -1,6 +1,9 @@
 // 3rd Party
 const requireFromUrl = require( 'require-from-url/sync' );
 
+// Internal
+const messages = require('./messages');
+
 /**
  * Interpolates environment variables within a string
  * 
@@ -26,7 +29,7 @@ function getLibVersion(libUrl){
         const remoteLib = requireFromUrl( libUrl );
         return remoteLib.version;
     } catch (e) {
-        throw new Error(`Error while requiring library from ${libUrl}. ${e}`);
+        throw new Error(messages.not_required(libUrl, e));
     }
 }
 
