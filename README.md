@@ -1,4 +1,7 @@
-# Lib Version Check
+# This library is no longer maintained. Please see [T297381](https://phabricator.wikimedia.org/T297381).
+
+
+# ~Lib Version Check~
 
 A small utility to check remote library versions against a local dependency entry.
 
